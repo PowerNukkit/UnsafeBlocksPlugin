@@ -2,17 +2,89 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <name>ExamplePlugin</name>
-    <artifactId>example-plugin</artifactId>
+    <artifactId>unsafe-blocks-plugin</artifactId>
     <groupId>org.powernukkit.plugins</groupId>
-    <version>0.1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <version>1.0.0-SNAPSHOT</version>
+    
+    <name>Unsafe Blocks Plugin</name>
+    <description>A plugin that adds unsafe blocks to your server, like reserved6, info_update and info_update2.</description>
 
+    <inceptionYear>2020</inceptionYear>
+    <organization>
+        <name>PowerNukkit</name>
+        <url>https://powernukkit.org</url>
+    </organization>
+
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/PowerNukkit/UnsafeBlocksPlugin/issues</url>
+    </issueManagement>
+
+    <scm>
+        <connection>scm:git:https://github.com/PowerNukkit/UnsafeBlocksPlugin.git</connection>
+        <developerConnection>scm:git:ssh://github.com:PowerNukkit/UnsafeBlocksPlugin.git</developerConnection>
+        <url>https://github.com/PowerNukkit/UnsafeBlocksPlugin</url>
+    </scm>
+
+    <licenses>
+        <license>
+            <name>GNU General Public License, Version 3</name>
+            <url>http://www.gnu.org/licenses/gpl-3.0.html</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <id>joserobjr</id>
+            <name>José Roberto de Araújo Júnior</name>
+            <url>https://github.com/joserobjr</url>
+            <email>joserobjr@powernukkit.org</email>
+            <organization>PowerNukkit</organization>
+            <organizationUrl>https://powernukkit.org</organizationUrl>
+            <timezone>-3</timezone>
+            <roles>
+                <role>leader</role>
+                <role>developer</role>
+            </roles>
+        </developer>
+    </developers>
+    
+    <contributors>
+        <contributor>
+            <name>good777LUCKY</name>
+            <url>https://github.com/good777LUCKY</url>
+            <roles>
+                <role>developer</role>
+            </roles>
+        </contributor>
+    </contributors>
+
+    <distributionManagement>
+        <repository>
+            <id>powernukkit-releases</id>
+            <name>powernukkit-releases</name>
+            <url>https://api.bintray.com/maven/powernukkit/powernukkit/PowerNukkit</url>
+        </repository>
+        <snapshotRepository>
+            <id>powernukkit-snapshots</id>
+            <name>powernukkit-snapshots</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+    
+    <repositories>
+        <repository>
+            <id>powernukkit-snapshots</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </repository>
+    </repositories>
+    
     <dependencies>
         <dependency>
             <groupId>org.powernukkit</groupId>
             <artifactId>powernukkit</artifactId>
-            <version>1.3.1.4-PN</version>
+            <version>1.4.0.0-PN-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
@@ -20,4 +92,68 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.source>1.8</maven.compiler.source>
     </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <archive>
+                        <manifestEntries>
+                            <Automatic-Module-Name>org.powernukkit.version</Automatic-Module-Name>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <source>8</source>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>3.0.0-M1</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>3.0.0-M1</version>
+            </plugin>
+        </plugins>
+    </build>
 </project>
