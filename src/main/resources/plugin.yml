@@ -31,7 +31,7 @@ description: Example plugin showing the API
 
 # Optional
 # A link where the admins can find more info about your plugin
-website: https://github.com/Nukkit/ExamplePlugin
+website: https://github.com/PowerNukkit/UnsafeBlocksPlugin
 
 # Optional
 # A list of plugins that are required to use this plugin
